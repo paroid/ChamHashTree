@@ -600,7 +600,8 @@ namespace paroid {
 		if(genChamKey(HASH_LENGTH, csKey))
 			::std::cout << "ChamHashTree::ChamHashTree() : genChamKey() ERROR" << ::std::endl;
 
-		chamPubKey = csKey->HK;
+		chamPubKey = new chamHash_PubKey();
+		*chamPubKey = *(csKey->HK);
 		//RSA key
 		rsaKey = RSA_new();
 		BIGNUM *bne = BN_new();
@@ -639,7 +640,8 @@ namespace paroid {
 		BN_hex2bn(&(csKey->InvModq), buf.c_str());
 		keyFile.close();
 
-		chamPubKey = csKey->HK;
+		chamPubKey = new chamHash_PubKey();
+		*chamPubKey = *(csKey->HK);
 
 		//RSA key
 		rsaKey = RSA_new();
